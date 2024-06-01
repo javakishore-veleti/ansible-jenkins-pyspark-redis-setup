@@ -108,36 +108,48 @@ ansible-jenkins-pyspark-redis-setup/
 ## Setup Instructions
 Follow below steps to setup this project resources either in local or in cloud.
 
-### Step 2: Install AWS, Azure, GCP CLI Tools
+### Step 1: Install AWS, Azure, GCP CLI Tools
+To manage cloud resources, you need to install the CLI tools for AWS, Azure, and GCP. These tools allow you to interact with the respective cloud platforms from your command line.
 
-### Step 1: In AWS Create Access Keys For Each Environment
+To automate the installation of AWS CLI and Azure CLI, you can use the provided install_cli_tools.sh script. This script will detect your operating system and install the necessary CLI tools.
+
+#### Steps to execute the script install_cli_tools.sh:
+Open your terminal and navigate to the directory where you downloaded this code repo. Run the following command to make the script executable and xecute the script:
+
+```shell
+chmod +x install_cli_tools.sh
+npm run install_cli_tools
+```
+
+### Step 2: In AWS Create Access Keys For Each Environment
 1. Login to AWS Management Console and create IAM access keys for each of the environment mentioned above..
 2. Then on the machine you are execting this project scripts create a file by name "input.sh"
-3. Update "input.sh" with the following information
+3. Update "input_aws_access_keys.sh" with the AWS ACCESS KEY Details for each of the environment 
 
-```script
-#!/bin/bash
 
-# AWS credentials
-export AWS_ACCESS_KEYS=( ["dev"]="AKIAIOSFODNN7EXAMPLE" ["test"]="AKIAI44QH8DHBEXAMPLE" ["prod"]="AKIAI44QH8DHBEXAMPLE2" )
-export AWS_SECRET_KEYS=( ["dev"]="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" ["test"]="wJalrXUtnFEMI/K7MDENG/aPxRfiCYEXAMPLEKEY" ["prod"]="wJalrXUtnFEMI/K7MDENG/aPxRfiCYEXAMPLEKEY2" )
-export AWS_REGIONS=( ["dev"]="us-west-2" ["test"]="us-east-1" ["prod"]="us-east-2" )
+### Step 3: Update Your Local AWS Configs Folder With Above Access Keys
+To manage the cloud resources like AWS, you need to store AWS CLI credentials in AWS CLI configs standard approach. This step required "input.sh" data file you have created above.
 
-# Azure credentials
-export AZURE_SUBSCRIPTION_IDS=( ["dev"]="your-dev-subscription-id" ["test"]="your-test-subscription-id" ["prod"]="your-prod-subscription-id" )
-export AZURE_TENANT_IDS=( ["dev"]="your-dev-tenant-id" ["test"]="your-test-tenant-id" ["prod"]="your-prod-tenant-id" )
-export AZURE_CLIENT_IDS=( ["dev"]="your-dev-client-id" ["test"]="your-test-client-id" ["prod"]="your-prod-client-id" )
-export AZURE_CLIENT_SECRETS=( ["dev"]="your-dev-client-secret" ["test"]="your-test-client-secret" ["prod"]="your-prod-client-secret" )
+To automate the configuration of your local AWS CLI configs with environment specific AWS ACCESS KEY information, run the below command.
 
-# GCP credentials
-export GCP_PROJECT_IDS=( ["dev"]="your-dev-project-id" ["test"]="your-test-project-id" ["prod"]="your-prod-project-id" )
-export GCP_CLIENT_IDS=( ["dev"]="your-dev-client-id" ["test"]="your-test-client-id" ["prod"]="your-prod-client-id" )
-export GCP_CLIENT_SECRETS=( ["dev"]="your-dev-client-secret" ["test"]="your-test-client-secret" ["prod"]="your-prod-client-secret" )
-export GCP_REFRESH_TOKENS=( ["dev"]="your-dev-refresh-token" ["test"]="your-test-refresh-token" ["prod"]="your-prod-refresh-token" )
+```shell
+# DEV Environment ONLY
+npm run configure_aws_access_keys_dev
+
+# STAGING Environment ONLY
+npm run configure_aws_access_keys_staging
+
+# PRE-PROD Environment ONLY
+npm run configure_aws_access_keys_pre_prod
+
+# PROD Environment ONLY
+npm run configure_aws_access_keys_prod
+
+# PARTNERS Environment ONLY
+npm run configure_aws_access_keys_partners
 
 ```
 
-### Step 2: Update Your Local AWS Configs Folder With Above Access Keys
 
 ## Bash Script to Create Project Structure and Files
 ```shell

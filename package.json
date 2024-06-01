@@ -5,7 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install_cli_tools": "sh scripts/01-initial-setup/install_cli_tools.sh"
+    "install_this_project_tools_setup": "pip install -r requirements.txt ",
+    "install_cli_tools": "sh scripts/01-initial-setup/install_cli_tools.sh",
+    "configure_aws_access_keys_dev": "ansible-playbook DevOps/ansible_configs/playbooks/cloud_provider_setup/aws-setup/configure_aws_profile.yml -e \"env=local-dev\" --ask-become-pass",
+    "configure_aws_access_keys_staging": "ansible-playbook DevOps/ansible_configs/playbooks/cloud_provider_setup/aws-setup/configure_aws_profile.yml -e \"env=staging\" --ask-become-pass",
+    "configure_aws_access_keys_pre_prod": "ansible-playbook DevOps/ansible_configs/playbooks/cloud_provider_setup/aws-setup/configure_aws_profile.yml -e \"env=pre-prod\" --ask-become-pass",
+    "configure_aws_access_keys_prod": "ansible-playbook DevOps/ansible_configs/playbooks/cloud_provider_setup/aws-setup/configure_aws_profile.yml -e \"env=prod\" --ask-become-pass",
+    "configure_aws_access_keys_partners": "ansible-playbook DevOps/ansible_configs/playbooks/cloud_provider_setup/aws-setup/configure_aws_profile.yml -e \"env=partners\" --ask-become-pass"
   },
   "repository": {
     "type": "git",
