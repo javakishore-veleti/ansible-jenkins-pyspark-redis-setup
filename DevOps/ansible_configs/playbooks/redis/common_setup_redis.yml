@@ -1,0 +1,11 @@
+- name: Common Redis Setup
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create Redis container (only for local-dev)
+      docker_container:
+        name: redis
+        image: redis:latest
+        ports:
+          - "6379:6379"
+      when: inventory_hostname == 'localhost'

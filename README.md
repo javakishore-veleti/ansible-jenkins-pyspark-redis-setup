@@ -41,6 +41,81 @@ Here's an example of what the `input.sh` script might look like:
 ```script
 #!/bin/bash
 
+# AWS credentials
+export AWS_ACCESS_KEYS=( ["dev"]="AKIAIOSFODNN7EXAMPLE" ["test"]="AKIAI44QH8DHBEXAMPLE" ["prod"]="AKIAI44QH8DHBEXAMPLE2" )
+export AWS_SECRET_KEYS=( ["dev"]="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" ["test"]="wJalrXUtnFEMI/K7MDENG/aPxRfiCYEXAMPLEKEY" ["prod"]="wJalrXUtnFEMI/K7MDENG/aPxRfiCYEXAMPLEKEY2" )
+export AWS_REGIONS=( ["dev"]="us-west-2" ["test"]="us-east-1" ["prod"]="us-east-2" )
+
+# Azure credentials
+export AZURE_SUBSCRIPTION_IDS=( ["dev"]="your-dev-subscription-id" ["test"]="your-test-subscription-id" ["prod"]="your-prod-subscription-id" )
+export AZURE_TENANT_IDS=( ["dev"]="your-dev-tenant-id" ["test"]="your-test-tenant-id" ["prod"]="your-prod-tenant-id" )
+export AZURE_CLIENT_IDS=( ["dev"]="your-dev-client-id" ["test"]="your-test-client-id" ["prod"]="your-prod-client-id" )
+export AZURE_CLIENT_SECRETS=( ["dev"]="your-dev-client-secret" ["test"]="your-test-client-secret" ["prod"]="your-prod-client-secret" )
+
+# GCP credentials
+export GCP_PROJECT_IDS=( ["dev"]="your-dev-project-id" ["test"]="your-test-project-id" ["prod"]="your-prod-project-id" )
+export GCP_CLIENT_IDS=( ["dev"]="your-dev-client-id" ["test"]="your-test-client-id" ["prod"]="your-prod-client-id" )
+export GCP_CLIENT_SECRETS=( ["dev"]="your-dev-client-secret" ["test"]="your-test-client-secret" ["prod"]="your-prod-client-secret" )
+export GCP_REFRESH_TOKENS=( ["dev"]="your-dev-refresh-token" ["test"]="your-test-refresh-token" ["prod"]="your-prod-refresh-token" )
+
+```
+
+## This repo Directory Structure
+
+```plaintext
+ansible-jenkins-pyspark-redis-setup/
+├── ansible_configs/
+│   ├── inventories/
+│   │   └── hosts
+│   ├── playbooks/
+│   │   ├── jenkins/
+│   │   │   ├── common_setup_jenkins.yml
+│   │   │   ├── setup_jenkins_local_dev.yml
+│   │   │   ├── setup_jenkins_staging.yml
+│   │   │   ├── setup_jenkins_integration_server.yml
+│   │   │   ├── setup_jenkins_prod.yml
+│   │   │   ├── setup_jenkins_pre_prod.yml
+│   │   │   └── setup_jenkins_partners.yml
+│   │   ├── redis/
+│   │   │   ├── common_setup_redis.yml
+│   │   │   ├── setup_redis_local_dev.yml
+│   │   │   ├── setup_redis_staging.yml
+│   │   │   ├── setup_redis_integration_server.yml
+│   │   │   ├── setup_redis_prod.yml
+│   │   │   ├── setup_redis_pre_prod.yml
+│   │   │   └── setup_redis_partners.yml
+│   ├── roles/
+│   │   ├── jenkins/
+│   │   │   └── tasks/
+│   │   │       └── main.yml
+│   │   └── redis/
+│   │       └── tasks/
+│   │           └── main.yml
+├── terraform_configs/
+│   ├── jenkins/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+│   │   └── terraform.tfvars
+│   ├── redis/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+│   │   └── terraform.tfvars
+└── README.md
+```
+
+## Setup Instructions
+Follow below steps to setup this project resources either in local or in cloud.
+
+### Step 2: Install AWS, Azure, GCP CLI Tools
+
+### Step 1: In AWS Create Access Keys For Each Environment
+1. Login to AWS Management Console and create IAM access keys for each of the environment mentioned above..
+2. Then on the machine you are execting this project scripts create a file by name "input.sh"
+3. Update "input.sh" with the following information
+
+```script
 #!/bin/bash
 
 # AWS credentials
@@ -62,38 +137,7 @@ export GCP_REFRESH_TOKENS=( ["dev"]="your-dev-refresh-token" ["test"]="your-test
 
 ```
 
-
-
-## This repo Directory Structure
-
-```plaintext
-ansible-jenkins-pyspark-redis-setup/
-├── ansible_configs/
-│   ├── inventories/
-│   │   └── hosts
-│   ├── playbooks/
-│   │   ├── provision_cloud_resources.yml
-│   │   ├── setup_jenkins.yml
-│   │   ├── setup_redis_local_dev.yml
-│   │   ├── setup_redis_staging.yml
-│   │   ├── setup_redis_integration_server.yml
-│   │   ├── setup_redis_prod.yml
-│   │   ├── setup_redis_pre_prod.yml
-│   │   └── setup_redis_partners.yml
-│   ├── roles/
-│   │   ├── jenkins/
-│   │   │   └── tasks/
-│   │   │       └── main.yml
-│   │   └── redis/
-│   │       └── tasks/
-│   │           └── main.yml
-├── terraform_configs/
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   └── terraform.tfvars
-└── README.md
-```
+### Step 2: Update Your Local AWS Configs Folder With Above Access Keys
 
 ## Bash Script to Create Project Structure and Files
 ```shell

@@ -1,0 +1,25 @@
+- hosts: localhost
+  tasks:
+    - name: Run Terraform for Jenkins
+      command: >
+        terraform -chdir=../../terraform_configs/jenkins apply -auto-approve
+
+    - name: Run Terraform for Redis
+      command: >
+        terraform -chdir=../../terraform_configs/redis apply -auto-approve
+
+    - name: Fetch Jenkins VM IP
+      shell: terraform -chdir=../../terraform_configs/jenkins output -raw jenkins_vm_ip
+      register: jenkins_vm_ip
+
+    - name: Fetch Redis Cluster Endpoint
+      shell: terraform -chdir=../../terraform_configs/redis output -raw redis_cluster_endpoint
+      register: redis_cluster_endpoint
+
+    - name: Set Jenkins VM IP Environment Variable
+      ansible.builtin.set_fact:
+        AJPRS_JENKINS_VM_IP: "{{ jenkins_vm_ip.stdout }}"
+
+    - name: Set Redis Endpoint Environment Variable
+      ansible.builtin.set_fact:
+        AJPRS_REDIS_CLUSTER_ENDPOINT: "{{ redis_cluster_endpoint.stdout }}"

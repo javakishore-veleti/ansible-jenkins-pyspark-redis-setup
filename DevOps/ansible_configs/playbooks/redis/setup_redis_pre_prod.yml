@@ -1,0 +1,10 @@
+- import_playbook: common_setup_redis.yml
+
+- hosts: ajprs-pre-prod
+  become: yes
+  tasks:
+    - name: Ensure Redis service is running
+      service:
+        name: redis
+        state: started
+        enabled: yes

@@ -1,20 +1,20 @@
-[local-dev]
+[ajprs-local-dev]
 localhost ansible_connection=local
 
-[staging]
-staging_jenkins ansible_host={{ lookup('env', 'STAGING_JENKINS_IP') }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/AJPRS_Staging_key.pem
+[ajprs-staging]
+ajprs_staging_jenkins ansible_host={{ lookup('env', 'AJPRS_STAGING_JENKINS_IP') }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/your_key.pem
 
-[integration-server]
-integration_jenkins ansible_host={{ lookup('env', 'INTEGRATION_JENKINS_IP') }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/AJPRS_Integration_key.pem
+[ajprs-integration-server]
+ajprs_integration_jenkins ansible_host={{ lookup('env', 'AJPRS_INTEGRATION_JENKINS_IP') }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/your_key.pem
 
-[prod]
-prod_jenkins ansible_host={{ lookup('env', 'PROD_JENKINS_IP') }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/AJPRS_Prod_key.pem
+[ajprs-prod]
+ajprs_prod_jenkins ansible_host={{ lookup('env', 'AJPRS_PROD_JENKINS_IP') }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/your_key.pem
 
-[pre-prod]
-preprod_jenkins ansible_host={{ lookup('env', 'PREPROD_JENKINS_IP') }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/AJPRS_PreProd_key.pem
+[ajprs-pre-prod]
+ajprs_preprod_jenkins ansible_host={{ lookup('env', 'AJPRS_PREPROD_JENKINS_IP') }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/your_key.pem
 
-[partners]
-partners_jenkins ansible_host={{ lookup('env', 'PARTNERS_JENKINS_IP') }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/AJPRS_Partners_key.pem
+[ajprs-partners]
+ajprs_partners_jenkins ansible_host={{ lookup('env', 'AJPRS_PARTNERS_JENKINS_IP') }} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/your_key.pem
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
