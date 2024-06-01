@@ -1,0 +1,29 @@
+{
+  "name": "ansible-jenkins-pyspark-redis-setup",
+  "version": "1.0.0",
+  "description": "\"This repository contains Ansible playbooks and Terraform configurations to set up Jenkins, Redis, and Spark clusters across different environments (local-dev, staging, integration-server, prod, pre-prod, partners).\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install_cli_tools": "sh scripts/install_cli_tools.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javakishore-veleti/ansible-jenkins-pyspark-redis-setup.git"
+  },
+  "keywords": [
+    "Ansible",
+    "Playbook",
+    "PySpark",
+    "Redis",
+    "AWS",
+    "Azure",
+    "GCP"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javakishore-veleti/ansible-jenkins-pyspark-redis-setup/issues"
+  },
+  "homepage": "https://github.com/javakishore-veleti/ansible-jenkins-pyspark-redis-setup#readme"
+}
